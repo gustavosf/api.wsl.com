@@ -2,8 +2,8 @@
 
 include '../api.wsl.php';
 
-$accesCode = 'your_access_code_here';
-$weight_loss = Calorific::forge($accessCode)->weight_entries();
+$accessCode = 'your_access_code_here';
+$weight_loss = \wsl\Calorific::forge($accessCode)->weight_entries();
 $data = array_map(function($entry) {
 	return array(
 		/* date */	 date_create($entry->timestamp)->format('d/m/Y'),
