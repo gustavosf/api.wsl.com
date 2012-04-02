@@ -1,6 +1,6 @@
 <?php
 
-//namespace wsl;
+namespace wsl;
 
 class WSL {
 
@@ -126,7 +126,7 @@ class Calorific {
 				'lastDownloadedGeneration' => 0,
 				'timeZoneId' => date_default_timezone_get(),
 			));
-			$request = new HttpRequest($this->resource, HttpRequest::METH_POST);
+			$request = new \HttpRequest($this->resource, \HttpRequest::METH_POST);
 			$request->setPostFields(array('jsonRequest' => $params));
 			$request->send();
 			$this->data = json_decode($request->getResponseBody())->operations;
