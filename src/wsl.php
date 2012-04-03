@@ -8,37 +8,15 @@ require 'wsl.cardiotrainer.php';
 class Connector {
 
 	private $accessCode;
-	private $modules = array();
+
+	protected $calorific;
+	protected $cardioTrainer;
 
 	public function __construct($accessCode)
 	{
 		$this->accessCode = $accessCode;
-	}
-
-	/**
-	 * Retrieves Cardiotrainer module
-	 * @return CardioTrainer
-	 */
-	public function cardioTrainer()
-	{
-		if (!isset($this->modules['cardioTrainer']))
-		{
-			$this->modules['cardioTrainer'] = new CardioTrainer($this->accessCode);
-		}
-		return $this->modules['cardioTrainer'];
-	}
-
-	/**
-	 * Retrieves Calorific module
-	 * @return Calorific
-	 */
-	public function calorific()
-	{
-		if (!isset($this->modules['calorific']))
-		{
-			$this->modules['calorific'] = new Calorific($this->accessCode);
-		}
-		return $this->modules['calorific'];
+		$this->cardioTrainer = new CardioTrainer($accessCode);
+		$this->calorific = new Calorific($accessCode);
 	}
 
 }
