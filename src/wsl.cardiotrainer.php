@@ -19,6 +19,14 @@ class CardioTrainer {
 		return new self($accessCode);
 	}
 
+	public function __get($param)
+	{
+		if ($param == 'workouts')
+		{
+			return $this->workouts();
+		}
+	}
+
 	/**
 	 * Retrieve all, or filtered workout list
 	 * @param  string $type biking, walking, running...
