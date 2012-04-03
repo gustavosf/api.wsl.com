@@ -42,16 +42,22 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 		}
 		elseif (is_array($filter))
 		{
-			$filtered_collection = array();
-			foreach ($this->collection as $item)
+
+			function filter_this($item, $filter)
 			{
 				$mantain = true;
 				foreach ($filter as $key => $value)
 				{
-					if (@$item->$key !== $value) $mantain = false;
+					if (is_array($value)) $mantain = $mantain AND filter_this($item->$key, $value);
+					else $mantain = $mantain & ($item->$key === $value);
 				}
-				if ($mantain) $filtered_collection[] = $item;
+				return $mantain;
 			}
+
+			$filtered_collection = array();
+			foreach ($this->collection as $item)
+				if (filter_this($item, $filter))
+					$filtered_collection[] = $item;
 		}
 		else
 		{
