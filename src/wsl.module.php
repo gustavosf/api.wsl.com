@@ -2,6 +2,11 @@
 
 namespace WSL;
 
+if (!class_exists('HttpRequest'))
+	throw new Exception('WSL needs the PECL HttpRequest PHP extension.');
+if (!function_exists('json_decode'))
+	throw new Exception('WSL needs the JSON PHP extension.');
+
 class Module {
 
 	protected $data;
