@@ -23,7 +23,7 @@ class CardioTrainer {
 	{
 		if ($param == 'workouts')
 		{
-			return new Collection($this->retrieve_data());
+			return new \Collection($this->retrieve_data());
 		}
 	}
 
