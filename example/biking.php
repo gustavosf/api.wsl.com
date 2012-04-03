@@ -3,7 +3,7 @@
 require '../src/wsl.php';
 
 $accessCode = (include 'accessCode.inc');
-$workouts = \wsl\CardioTrainer::forge($accessCode)->workouts('biking');
+$workouts = \WSL\CardioTrainer::forge($accessCode)->workouts('biking');
 
 /* group workout distance by week */
 $workouts_by_week = array();

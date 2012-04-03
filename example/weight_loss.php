@@ -3,7 +3,7 @@
 require '../src/wsl.php';
 
 $accessCode = (include 'accessCode.inc');
-$weight_loss = \wsl\Calorific::forge($accessCode)->weight_entries();
+$weight_loss = \WSL\Calorific::forge($accessCode)->weight_entries();
 $data = array_map(function($entry) {
 	return array(
 		/* date */	 date_create($entry->timestamp)->format('d/m/Y'),
