@@ -48,7 +48,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 				$mantain = true;
 				foreach ($filter as $key => $value)
 				{
-					if ($item->$key !== $value) $mantain = false;
+					if (@$item->$key !== $value) $mantain = false;
 				}
 				if ($mantain) $filtered_collection[] = $item;
 			}
