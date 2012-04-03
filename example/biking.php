@@ -1,6 +1,6 @@
 <?php
 
-include '../api.wsl.php';
+require '../src/wsl.php';
 
 $accessCode = (include 'accessCode.inc');
 $workouts = \wsl\CardioTrainer::forge($accessCode)->workouts('biking');

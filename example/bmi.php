@@ -1,6 +1,6 @@
 <?php
 
-include '../api.wsl.php';
+require '../src/wsl.php';
 
 $accessCode = (include 'accessCode.inc');
 $weight_loss = \wsl\Calorific::forge($accessCode)->weight_entries();
