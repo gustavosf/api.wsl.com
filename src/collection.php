@@ -1,7 +1,5 @@
 <?php
 
-namespace WSL;
-
 class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	
 	protected $collection;

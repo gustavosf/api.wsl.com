@@ -2,6 +2,7 @@
 
 namespace WSL;
 
+require 'collection.php';
 require 'wsl.calorific.php';
 require 'wsl.cardiotrainer.php';
 

@@ -23,31 +23,8 @@ class CardioTrainer {
 	{
 		if ($param == 'workouts')
 		{
-			return $this->workouts();
+			return new Collection($this->retrieve_data());
 		}
-	}
-
-	/**
-	 * Retrieve all, or filtered workout list
-	 * @param  string $type biking, walking, running...
-	 * @return array
-	 */
-	public function workouts($type = null)
-	{
-		$data = $this->retrieve_data();
-		
-		if ($type) /* apply filter */
-		{
-			$type = strtolower($type);
-			foreach ($data as $id => $entry)
-			{
-				if ($entry->exerciseType != "exercise_type_{$type}")
-				{
-					unset($data[$id]);
-				}
-			}
-		}
-		return $data;
 	}
 
 	/*== Private / Helper Methods ==*/
