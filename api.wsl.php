@@ -1,6 +1,6 @@
 <?php
 
-namespace wsl;
+//namespace wsl;
 
 class WSL {
 
@@ -44,9 +44,15 @@ class CardioTrainer {
 
 	private $accessCode;
 	
+	/*== Constructors ==*/
+
 	public function __construct($accessCode)
 	{
 		$this->accessCode = $accessCode;
+	}
+	public static function forge($accessCode)
+	{
+		return new self($accessCode);
 	}
 
 	/**
@@ -56,7 +62,7 @@ class CardioTrainer {
 	 */
 	public function workouts($type = null)
 	{
-		$data = $this->retrieve_data;
+		$data = $this->retrieve_data();
 		
 		if ($type) /* apply filter */
 		{
