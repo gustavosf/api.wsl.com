@@ -3,13 +3,13 @@
 require '../src/wsl.php';
 
 $accessCode = (include 'accessCode.inc');
-$weight_loss = \WSL\Calorific::forge($accessCode)->weight_entries();
-$data = array_map(function($entry) {
+$weight_loss = \WSL\Calorific::forge($accessCode)->weight;
+$data = $weight_loss->map(function($entry) {
 	return array(
-		/* date */	 date_create($entry->timestamp)->format('d/m/Y'),
-		/* weight */ $entry->weightInKg
+		/* date */	 date_create($entry->userProfile->timestamp)->format('d/m/Y'),
+		/* weight */ $entry->userProfile->weightInKg
 	);
-}, $weight_loss);
+})->to_array();
 $data = array_values($data); /* removing keys */
 
 ?>
