@@ -1,0 +1,1 @@
+<?php return 'your_access_code_here'; ?>

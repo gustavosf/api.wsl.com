@@ -2,7 +2,7 @@
 
 include '../api.wsl.php';
 
-$accessCode = 'your_access_code_here';
+$accessCode = (include 'accessCode.inc');
 $weight_loss = \wsl\Calorific::forge($accessCode)->weight_entries();
 $data = array_map(function($entry) {
 	return array(

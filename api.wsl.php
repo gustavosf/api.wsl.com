@@ -1,6 +1,6 @@
 <?php
 
-//namespace wsl;
+namespace wsl;
 
 class WSL {
 
