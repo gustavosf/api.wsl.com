@@ -23,16 +23,16 @@ class CardioTrainer extends Module {
 	{
 		if ($param == 'workouts')
 		{
-			return new \Collection($this->request_data());
+			return $this->request_data();
 		}
 	}
 
 	protected function request_data()
 	{
-		return parent::retrieve_data(
+		return new \Collection(parent::retrieve_data(
 			'account/getExerciseHistory', 
 			array('accessCode' => $this->accessCode)
-		)->uploadedExerciseInfos;
+		)->uploadedExerciseInfos);
 	}
 
 }

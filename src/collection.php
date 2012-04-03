@@ -48,8 +48,9 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 				$mantain = true;
 				foreach ($filter as $key => $value)
 				{
-					if (is_array($value)) $mantain = $mantain AND filter_this($item->$key, $value);
-					else $mantain = $mantain & ($item->$key === $value);
+					if (is_array($value) && isset($item->$key))
+						$mantain = $mantain AND filter_this($item->$key, $value);
+					else $mantain = $mantain & (@$item->$key === $value);
 				}
 				return $mantain;
 			}
@@ -64,6 +65,25 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 			throw new InvalidArgumentException;
 		}
 		return new Collection($filtered_collection);
+	}
+
+	/**
+	 * Simple mapping
+	 * @param  function $callback
+	 * @return Collection
+	 */
+	public function map($callback)
+	{
+		return new Collection(array_map($callback, $this->collection));
+	}
+
+	/**
+	 * To array cast
+	 * @return array
+	 */
+	public function to_array()
+	{
+		return $this->collection;
 	}
 
 	/*== Simple implementations of ArrayAccess, Countable e IteratorAggregate ==*/
