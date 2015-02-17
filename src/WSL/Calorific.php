@@ -2,13 +2,10 @@
 
 namespace WSL;
 
-require 'wsl.calorific.food.php';
-require 'wsl.calorific.weight.php';
-
 class Calorific extends Module {
 
 	private $accessCode;
-	
+
 	/*== Constructors ==*/
 
 	public function __construct($accessCode)
@@ -17,9 +14,9 @@ class Calorific extends Module {
 	}
 	public static function forge($accessCode)
 	{
-		return new Calorific($accessCode);
+		return new self($accessCode);
 	}
-	
+
 	public function __get($param)
 	{
 		switch ($param) {
@@ -42,7 +39,7 @@ class Calorific extends Module {
 	protected function request_data()
 	{
 		return new \Collection(parent::retrieve_data(
-			'calorific/download', 
+			'calorific/download',
 			array('jsonRequest' => json_encode(array(
 				'accessCode' => $this->accessCode,
 				'lastDownloadedGeneration' => 0,

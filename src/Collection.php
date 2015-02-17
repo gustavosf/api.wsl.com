@@ -1,7 +1,7 @@
 <?php
 
 class Collection implements ArrayAccess, Countable, IteratorAggregate {
-	
+
 	protected $collection;
 
 	public function __construct($data)

@@ -2,12 +2,10 @@
 
 namespace WSL;
 
-require 'wsl.cardiotrainer.workout.php';
-
 class CardioTrainer extends Module {
 
 	private $accessCode;
-	
+
 	/*== Constructors ==*/
 
 	public function __construct($accessCode)
@@ -30,7 +28,7 @@ class CardioTrainer extends Module {
 	protected function request_data()
 	{
 		$data = parent::retrieve_data(
-			'account/getExerciseHistory', 
+			'account/getExerciseHistory',
 			array('accessCode' => $this->accessCode)
 		)->uploadedExerciseInfos;
 

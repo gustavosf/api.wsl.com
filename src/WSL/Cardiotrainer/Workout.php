@@ -1,6 +1,6 @@
 <?php
 
-namespace WSL\CardioTrainer;
+namespace WSL\Cardiotrainer;
 
 class Workout {
 

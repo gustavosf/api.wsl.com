@@ -2,11 +2,6 @@
 
 namespace WSL;
 
-require 'collection.php';
-require 'wsl.module.php';
-require 'wsl.calorific.php';
-require 'wsl.cardiotrainer.php';
-
 class Connector {
 
 	private $accessCode;

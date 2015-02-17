@@ -1,6 +1,6 @@
 <?php
 
-namespace WSL\CardioTrainer\Workout;
+namespace WSL\Cardiotrainer\Workout;
 
 class Route {
 

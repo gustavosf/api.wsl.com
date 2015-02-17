@@ -1,6 +1,6 @@
 <?php
 
-require '../src/wsl.php';
+require '../src/autoloader.php';
 
 $accessCode = (include 'accessCode.inc');
 $workouts = \WSL\CardioTrainer::forge($accessCode)
