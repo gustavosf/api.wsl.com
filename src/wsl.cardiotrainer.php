@@ -29,10 +29,16 @@ class CardioTrainer extends Module {
 
 	protected function request_data()
 	{
-		return new \Collection(parent::retrieve_data(
+		$data = parent::retrieve_data(
 			'account/getExerciseHistory', 
 			array('accessCode' => $this->accessCode)
-		)->uploadedExerciseInfos);
+		)->uploadedExerciseInfos;
+
+		$data = array_map(function($o){
+			return new \WSL\CardioTrainer\Workout($o);
+		}, $data);
+
+		return new \Collection($data);
 	}
 
 }

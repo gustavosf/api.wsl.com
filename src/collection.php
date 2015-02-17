@@ -43,21 +43,21 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 		elseif (is_array($filter))
 		{
 
-			function filter_this($item, $filter)
+			$filter_this = function ($item, $filter) use (&$filter_this)
 			{
 				$mantain = true;
 				foreach ($filter as $key => $value)
 				{
 					if (is_array($value) && isset($item->$key))
-						$mantain = $mantain AND filter_this($item->$key, $value);
+						$mantain = $mantain AND $filter_this($item->$key, $value);
 					else $mantain = $mantain & (@$item->$key === $value);
 				}
 				return $mantain;
-			}
+			};
 
 			$filtered_collection = array();
 			foreach ($this->collection as $item)
-				if (filter_this($item, $filter))
+				if ($filter_this($item, $filter))
 					$filtered_collection[] = $item;
 		}
 		else
@@ -78,6 +78,27 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	}
 
 	/**
+	 * Simple ordering
+	 * @param  function $callback
+	 * @return Collection
+	 */
+	public function order($callback)
+	{
+		usort($this->collection, $callback);
+		return $this;
+	}
+
+	/**
+	 * Simple reducing
+	 * @param  function $callback
+	 * @return Collection
+	 */
+	public function reduce($callback)
+	{
+		return array_reduce($this->collection, $callback);
+	}
+
+	/**
 	 * To array cast
 	 * @return array
 	 */
@@ -87,7 +108,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate {
 	}
 
 	/*== Simple implementations of ArrayAccess, Countable e IteratorAggregate ==*/
-	   
+
 	public function offsetSet($offset, $value) {
 		if (is_null($offset))
 		{

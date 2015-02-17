@@ -4,7 +4,9 @@ require '../src/wsl.php';
 
 $accessCode = (include 'accessCode.inc');
 $weight_loss = \WSL\Calorific::forge($accessCode)->weight;
-$data = $weight_loss->map(function($entry) {
+$data = $weight_loss->order(function($a, $b) {
+	return $a->userProfile->timestamp > $b->userProfile->timestamp ? 1 : -1;
+})->map(function($entry) {
 	return array(
 		/* date */	 date_create($entry->userProfile->timestamp)->format('d/m/Y'),
 		/* weight */ $entry->userProfile->weightInKg
