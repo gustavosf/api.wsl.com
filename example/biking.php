@@ -1,9 +1,11 @@
 <?php
 
-require '../src/wsl.php';
+require '../src/autoloader.php';
 
 $accessCode = (include 'accessCode.inc');
-$workouts = \wsl\CardioTrainer::forge($accessCode)->workouts('biking');
+$workouts = \WSL\CardioTrainer::forge($accessCode)
+	->workouts
+	->filter(array('exerciseType' => 'exercise_type_biking'));
 
 /* group workout distance by week */
 $workouts_by_week = array();

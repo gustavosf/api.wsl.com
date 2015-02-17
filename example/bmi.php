@@ -1,20 +1,22 @@
 <?php
 
-require '../src/wsl.php';
+require '../src/autoloader.php';
 
 $accessCode = (include 'accessCode.inc');
-$weight_loss = \wsl\Calorific::forge($accessCode)->weight_entries();
-$data = array_map(function($entry) {
+$weight_loss = \WSL\Calorific::forge($accessCode)->weight;
+$data = $weight_loss->order(function($a, $b) {
+	return $a->userProfile->timestamp > $b->userProfile->timestamp ? 1 : -1;
+})->map(function($entry) {
 	return array(
-		/* date */     date_create($entry->timestamp)->format('d/m/Y'),
-		/* bmi */      $entry->weightInKg / (($entry->heightInCm/100) ^ 2),
+		/* date */     date_create($entry->userProfile->timestamp)->format('d/m/Y'),
+		/* bmi */      $entry->userProfile->weightInKg / (($entry->userProfile->heightInCm/100) ^ 2),
 		/* under */    18.5,
 		/* ideal */    25,
 		/* over  */    30,
 		/* obese I */  35,
 		/* obese II */ 40,
 	);
-}, $weight_loss);
+})->to_array();
 $data = array_values($data); /* removing keys */
 
 ?>
