@@ -3,7 +3,7 @@
 require '../src/autoloader.php';
 
 $accessCode = (include 'accessCode.inc');
-$workouts = \WSL\CardioTrainer::forge($accessCode)
+$workouts = \WSL\Cardiotrainer::forge($accessCode)
 	->workouts
 	->filter(array('exerciseType' => 'exercise_type_biking'));
 
